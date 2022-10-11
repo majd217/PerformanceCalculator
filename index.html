@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1 ,maximum-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="css/main.css">
+        <link href='https://fonts.googleapis.com/css?family=Manrope' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>       
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
         <title>toshi-calc</title>
@@ -13,22 +14,25 @@
         <div class = "background-wrapper">
             <div class = "wrapper">
 
-                <div class= "rect">
-                    <h1>Performance Calculator</h1>
+                <div class = "perfcalc-holder">
+                    <p id = "title">Performance Rechner</p>
                 </div>
-
+                    
                 <div class = "mtl-invest">
+                        <p id = "mtl-invest">Ø mtl. Invest.</p>
+                        <div class = "slide-container">
+                            <input type = "range" min="1" max="100" value="50" class="slider" id="myRange">
+                        </div>
+                </div>
+
+                <div class = "duration">
 
                 </div>
 
-                <div class = "period-of-time">
+                <div class = "portfolio-growth">
 
                 </div>
-
-                <div class = "portfolio">
-
-                </div>
-            </div>
+            
          </div>
     </body>
 </html>
