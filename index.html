@@ -13,7 +13,7 @@
 
     <body>
         <div class = "background-wrapper">
-
+                
                 <div class = "perfcalc-holder">
                     <p id = "title">Performance Rechner</p>
                 </div>
@@ -26,12 +26,19 @@
                 </div>
 
                 <div class = "duration">
+                    <p id = "duration">Duration</p>
+                        <div class = "slide-container">
+                            <input  type = "range" min="3" max="20" value="20" class="slider" id="myRange">
+                           <p> <span id= "value"></span></p> 
+                        </div>
                     
                 </div>
 
                 <div class = "portfolio-growth">
-
-                </div>
+                    <p id = "portfolio">Portfolio and Growth</p>
+                    <button onclick = "pushClicked()" type="button" id = "pushbtn" >Push</button>
+                    <button onclick = "growClicked()" type="button" id = "growbtn" >Grow</button>
+                    <button onclick = "trustClicked()" type="button" id = "trustbtn" >Trust</button>                </div>
             
         </div>
         <div class="chartCard">

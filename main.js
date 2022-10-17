@@ -5,16 +5,13 @@ slider.oninput = function(){
 output.innerHTML = this.value;
 }
 var x = slider.value;
-// function changed(value){
-//    var x = slider.value;
-//    console.log(x);
-//    slider.style.backgroundImage = "linear-gradient(to right,rgb(188,244,39)"+ x + "%,rgb(214,214,214)"+  +x+ "%)";
-// }
-
-slider.addEventListener("mousemove", function(){
+function changed(value){
+   var x = slider.value;
    console.log(x);
    slider.style.backgroundImage = "linear-gradient(to right,rgb(188,244,39)"+ x + "%,rgb(214,214,214)"+  +x+ "%)";
-});
+}
+
+
 const labels =["2022","2023","2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036","2037"];
 
 const data = {

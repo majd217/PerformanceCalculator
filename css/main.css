@@ -12,58 +12,84 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     float: left;
 }
 
-/* .wrapper {
-    width: 100%;
-    margin-left: 6%;
-    margin-right: 6%;
-    margin-top: 10%;
-    margin-bottom:10%;
-    aspect-ratio: 400 / 850;
-    border-radius: 40px;
-} */
+
 
 #title{
-    padding-top: 50px;
+    padding-top: 70px;
     width: 100%;
     text-align: center;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 500;
     color: white;
-    font-size: 22px ; 
+    font-size: 20px ; 
     margin-bottom: 0px;
 }
 
-#mtl-invest{
+.mtl-invest{
+    padding-left: 105px;
+
+}
+
+.duration{
+    padding-left: 105px;
+
+}
+.portfolio-growth{
+    padding-left: 105px;
+
+}
+#portfolio{
+    padding-top: 30px;
+    width: 100%;
+    float: inline-start;
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 18px;
     color: #FFFFFF;
-    padding-top: 40px;
-    padding-left: 12px;
     margin-bottom: 0px;
+}
+#duration{
+    padding-top: 30px;
+    width: 100%;
+    float: inline-start;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-bottom: 0px;    
+}
+#mtl-invest{
+    padding-top: 40px;
+    width: 100%;
+    float: inline-start;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-bottom: 0px;
+    
 }
 
 #value{
     display:none;
 }
+
 .slider{
     /* to override default style */
   -webkit-appearance: none;  
   appearance: none;
   background: linear-gradient(90deg, rgb(214,214,214) 50%,rgb(214,214,214) 50%);
   height: 9px;
-  margin-left: 12px;
   border-radius: 15px;  
-  width: 230px;
-  outline: none; 
+  width: 220px;
+    outline: none; 
 }
  /* for chrome */
 .slider::-webkit-slider-thumb {
@@ -85,7 +111,24 @@
     background: white;
     cursor: pointer;
 }
-
+#pushbtn{
+    background: #B7CB75;
+    border-radius: 100px;
+    width: 64px;
+    height: 35px;;
+}
+#trustbtn{
+    background: #B7CB75;
+    border-radius: 100px;
+    width: 64px;
+    height: 35px;
+}
+#growbtn{
+    background: #B7CB75;
+    border-radius: 100px;
+    width: 64px;
+    height: 35px;
+}
   .chartCard {
     width: 570px;
     height: calc(100vh - 40px);
@@ -93,6 +136,7 @@
     align-items: center;
     justify-content: center;
     float: right;
+    padding-right: 20px;
   }
   .chartBox {
     width: 700px;
