@@ -11,6 +11,9 @@
     background-image: url("../imgs/image.png");
     background-repeat: no-repeat;
     background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-position: center;
     float: left;
 }
@@ -29,23 +32,12 @@
     margin-bottom: 0px;
 }
 
-.mtl-invest{
-    padding-left: 105px;
-
+.section{
+    width:220px;
 }
 
-.duration{
-    padding-left: 105px;
-
-}
-.portfolio-growth{
-    padding-left: 105px;
-
-}
 #portfolio{
     padding-top: 30px;
-    width: 100%;
-    float: inline-start;
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -56,7 +48,6 @@
 #duration{
     padding-top: 30px;
     width: 100%;
-    float: inline-start;
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -67,7 +58,6 @@
 #mtl-invest{
     padding-top: 40px;
     width: 100%;
-    float: inline-start;
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -81,6 +71,21 @@
     display:none;
 }
 
+#value2{
+    display:none;
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: center;
+}
+
+.button{
+    background: #B7CB75;
+    border-radius: 20px;  
+    flex-grow: 1;
+}
+
 .slider{
     /* to override default style */
   -webkit-appearance: none;  
@@ -90,6 +95,37 @@
   border-radius: 15px;  
   width: 220px;
     outline: none; 
+}
+
+.slider2{
+    -webkit-appearance: none;  
+  appearance: none;
+  background: linear-gradient(90deg, #B7CB75 100%,rgb(214,214,214) 0%);
+  height: 9px;
+  border-radius: 15px;  
+  width: 220px;
+    outline: none; 
+}
+
+ /* for chrome */
+ .slider2::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%; 
+    background: white;
+    cursor: pointer;
+}
+/* for safari */
+.slider2::-moz-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%; 
+    background: white;
+    cursor: pointer;
 }
  /* for chrome */
 .slider::-webkit-slider-thumb {
@@ -111,24 +147,7 @@
     background: white;
     cursor: pointer;
 }
-#pushbtn{
-    background: #B7CB75;
-    border-radius: 100px;
-    width: 64px;
-    height: 35px;;
-}
-#trustbtn{
-    background: #B7CB75;
-    border-radius: 100px;
-    width: 64px;
-    height: 35px;
-}
-#growbtn{
-    background: #B7CB75;
-    border-radius: 100px;
-    width: 64px;
-    height: 35px;
-}
+
   .chartCard {
     width: 570px;
     height: calc(100vh - 40px);
