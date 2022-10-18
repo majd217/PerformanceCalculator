@@ -17,31 +17,41 @@
                 <div class = "perfcalc-holder">
                     <p id = "title">Performance Rechner</p>
                 </div>
+                <div class = "section-container">
                 <div class = "section">
-                        <p id = "mtl-invest">Ø mtl. Invest.</p>
+                        <div class="section-header">
+                            <p id = "mtl-invest">Ø mtl. Invest.</p>
+                            <p id = "mtlinvestval" class="slidervalue">7% / 75 €</p>
+                        </div>
+                        <hr>
                         <div class = "slide-container">
-                            <input oninput = "percentagePerMonth(this.value); slidersChanged(this);"  type = "range" min="3" max="20" value="3" class="slider" id="myRange">
-                           <p> <span id= "value"></span></p> 
+                            <input oninput = "percentagePerMonth(this.value); slidersChanged(this); mtlinvestvalUpdate(this.value); "  type = "range" min="3" max="20" value="7" class="slider" id="myRange">
                         </div>
                 </div>
 
                 <div class = "section">
-                    <p id = "duration">Duration</p>
-                        <div class = "slide-container">
-                            <input  oninput = "chartChanged(this.value); slidersChanged(this)" type = "range" min="3" max="20" value="20" class="slider2" id="myRange2">
-                           <p> <span id= "value2"></span></p> 
-                        </div>
-                    
+                    <div class="section-header">
+                        <p id = "duration">Duration</p>
+                        <p id = "durationval" class="slidervalue">20 Jahre</p>
+                    </div>
+                    <hr>
+                    <div class = "slide-container">
+                        <input  oninput = "chartChanged(this.value); slidersChanged(this); durationvalUpdate(this.value);" type = "range" min="3" max="20" value="20" class="slider2" id="myRange2">
+                        <p> <span id= "value2"></span></p> 
+                    </div>
                 </div>
 
                 <div class = "section">
                     <p id = "portfolio">Portfolio and Growth</p>
+                    <hr>
+
                     <div class = "buttons-container">
-                        <button onclick = "growthSelector(this)" type="button" class = "button" id = "pushbtn" >Push <br/> 7.31% </button>
-                        <button onclick = "growthSelector(this)" type="button" class = "button" id = "growbtn" >Grow <br/> 5.56% </button>
-                        <button onclick = "growthSelector(this)" type="button" class = "button" id = "trustbtn" >Trust <br/> 3.21% </button>   
-                    </div>             
+                        <button onclick = "growthSelector(this)" type="button" class = "button" id = "pushbtn" >push <br/> 7.31% </button>
+                        <button onclick = "growthSelector(this)" type="button" class = "button" id = "growbtn" >grow <br/> 5.56% </button>
+                        <button onclick = "growthSelector(this)" type="button" class = "button" id = "trustbtn" >trust <br/> 3.21% </button>   
+                    </div>   
                 </div>
+            </div>
             
         </div>
         <div class="chartCard">

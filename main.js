@@ -5,6 +5,10 @@ var selectedButton = "trustbtn";
 const growbtn = document.getElementById("growbtn");
 const trustbtn = document.getElementById("trustbtn");
 const pushbtn = document.getElementById("pushbtn");
+const mtlinvestval = document.getElementById("mtlinvestval");
+const durationval = document.getElementById("durationval");
+var slider = document.getElementById("myRange");
+
 document.getElementById(selectedButton).style.backgroundColor="rgb(214,214,214)";
 
 
@@ -17,6 +21,7 @@ document.getElementById(selectedButton).style.backgroundColor="rgb(214,214,214)"
     const rangeValue =  labels.slice(0,years);
     myChart.config.data.labels = rangeValue;
     myChart.update();
+    percentagePerMonth(slider.value);
   }
         
   function growthSelector(element){
@@ -25,14 +30,22 @@ document.getElementById(selectedButton).style.backgroundColor="rgb(214,214,214)"
     pushbtn.style.backgroundColor = "#B7CB75";
     trustbtn.style.backgroundColor = "#B7CB75";
     element.style.backgroundColor = "rgb(214,214,214)";
-    percentagePerMonth(document.getElementById("myRange").value); 
+    percentagePerMonth(slider.value); 
   }
 
+  function mtlinvestvalUpdate(value){
+    mtlinvestval.innerHTML = value + "% / " + Math.trunc(1071.5 * value / 100)+" €";
+  }
+
+  function durationvalUpdate(value){
+    durationval.innerHTML = value + " Jahre";
+
+  }
 
    function percentagePerMonth(value){
       let numOfYears = durationSlider.value;
       console.log(numOfYears);
-      let savedAmount = (1000 * value) / 100;
+      var savedAmount = Math.trunc(1071.42 * value / 100);
       let amountPerYear = savedAmount * 12;
       var growthPercentage = 1.0321;
 
@@ -56,15 +69,13 @@ document.getElementById(selectedButton).style.backgroundColor="rgb(214,214,214)"
           }
 
       }
+      myChart.config.data.datasets[0].data = [];
         var temp = amountPerYear;
-        myChart.config.data.datasets.forEach((dataset) => 
+        for(let i = 0 ; i < numOfYears; i++)
         {
-          for(let i = 0 ; i < numOfYears; i++)
-          {
-            temp = growthPercentage * temp;
-            dataset.data[i] = temp;
-          }
-        });
+          temp = growthPercentage * temp;
+          myChart.config.data.datasets[0].data.push(temp);
+        }
         myChart.update();
       }
 
@@ -75,7 +86,7 @@ document.getElementById(selectedButton).style.backgroundColor="rgb(214,214,214)"
 const data = {
   labels : labels,
   datasets: [{
-  data: [371.556, 383.482, 395.792, 408.497, 421.610, 435.144, 449.112, 463.528, 478.408, 493.764,509.614, 525.973, 542.857,560.282, 578.268, 596.830],
+  data: [],
   backgroundColor: [
     'rgb(183, 203, 117)',
     'rgb(183, 203, 117)',
@@ -126,3 +137,4 @@ document.getElementById('myChart'),
 config
 );
 
+percentagePerMonth(slider.value);
