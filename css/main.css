@@ -3,6 +3,15 @@
     padding: 0;
 }
 
+.maincontainer{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .background-wrapper{
     width: 295px;
     height: 583px;
@@ -13,7 +22,6 @@
     flex-direction: column;
     align-items: center;
     background-position: center;
-    float: left;
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -47,12 +55,17 @@
     padding: 12px 12px;
 }
 
-#line {
+.line {
     width: 100% !important;
     margin: 0px !important;
     color:white !important;
     opacity: 1;
     height: 1px !important;  
+}
+
+#gesamtline{
+    width: 100%;
+    color: black !important;
 }
 .amount {
  display: inline-block;
@@ -128,7 +141,7 @@
     border-radius: 6px;
     border: none;   
     color: #535B35;
-    font-family: 'Lexend';
+    font-family: 'Lexend Deca';
     font-style: normal;
 }
 
@@ -168,20 +181,47 @@
     background: #48348A;
     cursor: pointer;
 }
-  .chartCard {
-    height: calc(100vh - 30px);
-    width: 520px;
+
+  .chartValues{
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    width: 200;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    float: right;
-    padding-right: 20px;
+    gap: 10px;
+    line-height: 1.5;
+
   }
+
+  .finalamounts{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10px;
+    width: 200px;
+  }
+  .finalamounts > p{
+    margin-bottom: 0px !important;
+  }
+
+  .vals{
+    width: 100px;
+    text-align: end;
+  }
+  .chart {
+    margin-top: 100px;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
   .chartBox {
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
     border: solid 1px #e1e1e1;
-    width: 600px;
-    height: 400px;
+    width: 450px;
+    height: 280px;
     padding: 20px;
     background: white;
   }
