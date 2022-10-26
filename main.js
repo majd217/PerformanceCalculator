@@ -80,6 +80,7 @@ document.getElementById(selectedButton).style.opacity="1.0";
       }
       myChart.config.data.datasets[0].data = [];
       myChart.config.data.datasets[1].data = [];
+      myChart.config.data.datasets[2].data = [];
 
       var finalVal = 0;
       for(let i = 0 ; i < numOfYears; i++)
@@ -93,6 +94,7 @@ document.getElementById(selectedButton).style.opacity="1.0";
         const amountsaved = amountPerYear * (i+1);
         myChart.config.data.datasets[0].data.push(amountsaved);
         myChart.config.data.datasets[1].data.push(finalVal - amountsaved);
+        myChart.config.data.datasets[2].data.push(finalVal);
 
       }
       console.log(finalVal);
@@ -101,28 +103,33 @@ document.getElementById(selectedButton).style.opacity="1.0";
       myChart.update();
     }
 
-const borderRadiusAllCorners = 
-{topLeft: 100, topRight: 100, bottomLeft: 100, bottomRight: 100}       
+const commonStyles =
+{
+  barThickness: 7,
+  borderRadius: 50,
+  borderSkipped: false,
+}
+
+
 const data = {
   labels : labels,
   datasets: [
     {
       data: [],
-      backgroundColor: '#48348A',
-      borderColor: '#48348A',
-      borderWidth: 1,
-      borderRadius:borderRadiusAllCorners,
-      borderSkipped:false,
-      barPercentage: 0.3,
+        ...commonStyles,
     },
     {
       data: [],
-      backgroundColor: 'rgb(183, 203, 117)',
-      borderColor: 'rgb(183, 203, 117)',
-      borderWidth: 1,
-      borderRadius:borderRadiusAllCorners,
-      borderSkipped:false,
-      barPercentage: 0.3,
+      backgroundColor: '#B7CB75',
+      fillColor :'#B7CB75',
+      borderColor: '#B7CB75',
+        ...commonStyles,
+    },
+    {
+      data: [],
+      backgroundColor: '#B7CB75',
+      borderColor: '#B7CB75',
+        ...commonStyles,
     }
 ]
 };
@@ -130,7 +137,7 @@ const data = {
 const customTitle = {
 	id: 'customTitle',
   beforeLayout: (chart, args, opts) => {
-  	const { ctx } = chart;    
+  	const { ctx } = chart;   
   	if (opts.x.display == true) {
       ctx.font = opts.x.font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
       const { width } = ctx.measureText(opts.x.text);
@@ -162,37 +169,48 @@ const customTitle = {
   }
 }
 
-
+const options = {
+  plugins: { 
+    legend: { display: false },
+    customTitle: {
+      y: {
+        display: true,
+        text: 'Wert in €',
+      },
+      x: {
+        display: false,
+      }
+    },
+  },
+  responsive: true,
+  interaction: {
+    mode: "index",
+        intersect: false,
+  },
+  scales: {
+    x: {
+      stacked: true,
+      grid: {
+        display: false,
+        drawBorder: false,
+      },
+    },
+    y: {
+      display: false,
+      drawBorder: false,
+      lineWidth: 0.5,
+      stacked: false,
+      grid: {
+        display: false,
+      },
+    },
+  },
+};
 // config 
 const config = {
   type: 'bar',
-  data,
-  options: {
-    plugins:{
-      legend:{
-        display:false
-      },
-      customTitle: {
-      	y: {
-        	display: true,
-        	text: 'Wert in €',
-        },
-        x: {
-        	display: false,
-        }
-      }
-    },
-    scales: {
-      x: {
-        stacked: true,
-      },
-      y: {
-        beginAtZero: false,
-        display:true,
-        stacked: true
-      }
-    }
-  },
+  data:data,
+  options:options,
   plugins: [customTitle]
 };
 
