@@ -80,10 +80,15 @@ document.getElementById(selectedButton).style.opacity="1.0";
           }
 
       }
-      const formatter = new Intl.NumberFormat("de-DE", {
-        style: "currency",
-        currency: "EUR"
-    });
+      
+
+      // var formatteDfinalVal = new Intl.NumberFormat("de-DE", {
+      //   style: "currency",
+      //   currency: "EUR"}).format(Math.round(finalVal * 100) / 100);
+      
+      //   var formattedEingezahltVal = formatter.format(Math.round(amountsaved * 100) / 100);
+      
+
       myChart.config.data.datasets[0].data = [];
       myChart.config.data.datasets[1].data = [];
       myChart.config.data.datasets[2].data = [];
@@ -98,16 +103,16 @@ document.getElementById(selectedButton).style.opacity="1.0";
         }
         finalVal = growthPercentage * amountPerYear * compoundInterest ;
         amountsaved = amountPerYear * (i+1);
-        myChart.config.data.datasets[0].data.push(Math.round(amountsaved * 100) / 100);
+        myChart.config.data.datasets[0].data.push((Math.round(amountsaved * 100) / 100));
         myChart.config.data.datasets[1].data.push(Math.round((finalVal - amountsaved) * 100) / 100);
         myChart.config.data.datasets[2].data.push(Math.round(finalVal * 100) / 100);
 
       }
       console.log(finalVal);
-      totalAmount.innerHTML = formatter.format(Math.round(finalVal * 100) / 100);
-      eingezahltVal.innerHTML = formatter.format(Math.round(amountsaved * 100) / 100);
-      gesamtVal.innerHTML = formatter.format(Math.round(finalVal * 100) / 100);
-      renditeVal.innerHTML =  formatter.format(Math.round((finalVal - amountsaved) * 100) / 100);
+      totalAmount.innerHTML = new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(Math.round(finalVal * 100) / 100);
+      eingezahltVal.innerHTML = new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(amountsaved) ;
+      gesamtVal.innerHTML =  new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(finalVal);
+      renditeVal.innerHTML =  new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format((finalVal - amountsaved));
       
       myChart.update();
     }
