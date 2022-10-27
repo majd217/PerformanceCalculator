@@ -1,6 +1,6 @@
 
 const durationSlider = document.getElementById("myRange2");
-const labels =["2023","2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036","2037","2038","2039","2040","2041"];
+const labels =["2023","2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036","2037","2038","2039","2040","2041","2042"];
 var selectedButton = "trustbtn";
 const growbtn = document.getElementById("growbtn");
 const trustbtn = document.getElementById("trustbtn");
@@ -125,10 +125,11 @@ document.getElementById(selectedButton).style.opacity="1.0";
       borderSkipped: false,
     }
 
-
+    // const labelToolTip = [data.datasets[0].data,data.datasets[2].data,data.datasets[2].data];
     const data = {
       labels : labels,
       datasets: [
+
         {
           data: [],
           backgroundColor: '#48348A',
@@ -137,9 +138,9 @@ document.getElementById(selectedButton).style.opacity="1.0";
         },
         {
           data: [],
-          backgroundColor: 'white',
-          fillColor :'white',
-          borderColor: 'white',
+          backgroundColor: 'transparent',
+          fillColor :'transparent',
+          borderColor: 'transparent',
             ...commonStyles,
         },
         {
@@ -189,6 +190,16 @@ document.getElementById(selectedButton).style.opacity="1.0";
 
     const options = {
       plugins: { 
+        tooltip: {
+          callbacks: {
+              label: function(context) {
+                if (context.parsed.y !== null) {
+                      return new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(context.parsed.y);
+                }
+              },  
+          }
+        },
+
         legend: { display: false },
         customTitle: {
           y: {
@@ -201,13 +212,13 @@ document.getElementById(selectedButton).style.opacity="1.0";
         },
       },
       responsive: true,
+      
       interaction: {
-        mode: "index",
-            intersect: false,
+            mode: 'index', 
       },
+      
       scales: {
         x: {
-         
           stacked: true,
           grid: {
             display: false,
