@@ -80,6 +80,10 @@ document.getElementById(selectedButton).style.opacity="1.0";
           }
 
       }
+      const formatter = new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR"
+    });
       myChart.config.data.datasets[0].data = [];
       myChart.config.data.datasets[1].data = [];
       myChart.config.data.datasets[2].data = [];
@@ -100,133 +104,135 @@ document.getElementById(selectedButton).style.opacity="1.0";
 
       }
       console.log(finalVal);
-      totalAmount.innerHTML = new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(Math.round(finalVal * 100) / 100);
-      eingezahltVal.innerHTML = new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(Math.round(amountsaved * 100) / 100);
-      gesamtVal.innerHTML =  new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(Math.round(finalVal * 100) / 100);
-      renditeVal.innerHTML =  new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(Math.round((finalVal - amountsaved) * 100) / 100);
+      totalAmount.innerHTML = formatter.format(Math.round(finalVal * 100) / 100);
+      eingezahltVal.innerHTML = formatter.format(Math.round(amountsaved * 100) / 100);
+      gesamtVal.innerHTML = formatter.format(Math.round(finalVal * 100) / 100);
+      renditeVal.innerHTML =  formatter.format(Math.round((finalVal - amountsaved) * 100) / 100);
       
       myChart.update();
     }
+     
 
-const commonStyles =
-{
-  barThickness: 7,
-  borderRadius: 50,
-  borderSkipped: false,
-}
-
-
-const data = {
-  labels : labels,
-  datasets: [
+    const commonStyles =
     {
-      data: [],
-      backgroundColor: '#48348A',
-      fillColor: '#48348A',
-        ...commonStyles,
-    },
-    {
-      data: [],
-      backgroundColor: 'white',
-      fillColor :'white',
-      borderColor: 'white',
-        ...commonStyles,
-    },
-    {
-      data: [],
-      backgroundColor: '#B7CB75',
-      borderColor: '#B7CB75',
-      fillColor:'#B7CB75',
-        ...commonStyles,
-    }
-]
-};
-
-const customTitle = {
-	id: 'customTitle',
-  beforeLayout: (chart, args, opts) => {
-  	const { ctx } = chart;   
-  	if (opts.x.display == true) {
-      ctx.font = opts.x.font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
-      const { width } = ctx.measureText(opts.x.text);
-      chart.options.layout.padding.right = width * 1.3;
+      barThickness: 7,
+      borderRadius: 50,
+      borderSkipped: false,
     }
 
-    if (opts.y.display == true) {
-      ctx.font = opts.y.font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
-      const { fontBoundingBoxAscent,fontBoundingBoxDescent } = ctx.measureText(opts.y.text);
-      let height = fontBoundingBoxAscent + fontBoundingBoxDescent;
-      chart.options.layout.padding.top = height * 2;
-    }
 
-  },
-  afterDraw: (chart, args, opts) => {
-  	const { ctx, scales: { x, y }, chartArea: { top, bottom, left, right } } = chart;
-    
-    if (opts.x.display) {
-    	ctx.fillStyle = opts.x.color || Chart.defaults.color
-      ctx.font = opts.x.font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
-    	ctx.fillText(opts.x.text, (right + (opts.x.offsetX || 0)), (bottom + ((opts.x.offsetY * -1) || 0)))
-    }
-    
-    if(opts.y.display) {
-    	ctx.fillStyle = opts.y.color || Chart.defaults.color
-      ctx.font = opts.y.font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
-      ctx.fillText(opts.y.text, opts.y.offsetX || 3, (top + ((opts.y.offsetY * -1) || -15)))
-    }
-  }
-}
+    const data = {
+      labels : labels,
+      datasets: [
+        {
+          data: [],
+          backgroundColor: '#48348A',
+          fillColor: '#48348A',
+            ...commonStyles,
+        },
+        {
+          data: [],
+          backgroundColor: 'white',
+          fillColor :'white',
+          borderColor: 'white',
+            ...commonStyles,
+        },
+        {
+          data: [],
+          backgroundColor: '#B7CB75',
+          borderColor: '#B7CB75',
+          fillColor:'#B7CB75',
+            ...commonStyles,
+        }
+    ]
+    };
 
-const options = {
-  plugins: { 
-    legend: { display: false },
-    customTitle: {
-      y: {
-        display: true,
-        text: 'Wert in €',
+    const customTitle = {
+      id: 'customTitle',
+      beforeLayout: (chart, args, opts) => {
+        const { ctx } = chart;   
+        if (opts.x.display == true) {
+          ctx.font = opts.x.font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
+          const { width } = ctx.measureText(opts.x.text);
+          chart.options.layout.padding.right = width * 1.3;
+        }
+
+        if (opts.y.display == true) {
+          ctx.font = opts.y.font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
+          const { fontBoundingBoxAscent,fontBoundingBoxDescent } = ctx.measureText(opts.y.text);
+          let height = fontBoundingBoxAscent + fontBoundingBoxDescent;
+          chart.options.layout.padding.top = height * 2;
+        }
+
       },
-      x: {
-        display: false,
+      afterDraw: (chart, args, opts) => {
+        const { ctx, scales: { x, y }, chartArea: { top, bottom, left, right } } = chart;
+        
+        if (opts.x.display) {
+          ctx.fillStyle = opts.x.color || Chart.defaults.color
+          ctx.font = opts.x.font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
+          ctx.fillText(opts.x.text, (right + (opts.x.offsetX || 0)), (bottom + ((opts.x.offsetY * -1) || 0)))
+        }
+        
+        if(opts.y.display) {
+          ctx.fillStyle = opts.y.color || Chart.defaults.color
+          ctx.font = opts.y.font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
+          ctx.fillText(opts.y.text, opts.y.offsetX || 3, (top + ((opts.y.offsetY * -1) || -15)))
+        }
       }
-    },
-  },
-  responsive: true,
-  interaction: {
-    mode: "index",
-        intersect: false,
-  },
-  scales: {
-    x: {
-      stacked: true,
-      grid: {
-        display: false,
-        drawBorder: false,
-      },
-    },
-    y: {
-      display: true,
-      drawBorder: false,
-      lineWidth: 0.5,
-      stacked: false,
-      grid: {
-        display: true,
-      },
-    },
-  },
-};
-// config 
-const config = {
-  type: 'bar',
-  data:data,
-  options:options,
-  plugins: [customTitle]
-};
+    }
 
-// render init block
-const myChart = new Chart(
-document.getElementById('myChart'),
-config
-);
+    const options = {
+      plugins: { 
+        legend: { display: false },
+        customTitle: {
+          y: {
+            display: true,
+            text: 'Wert in €',
+          },
+          x: {
+            display: false,
+          }
+        },
+      },
+      responsive: true,
+      interaction: {
+        mode: "index",
+            intersect: false,
+      },
+      scales: {
+        x: {
+         
+          stacked: true,
+          grid: {
+            display: false,
+            drawBorder: false,
+          },
+        },
+        y: {
+          display: true,
+          drawBorder: false,
+          lineWidth: 0.5,
+          stacked: false,
+          grid: {
+            display: true,
+          },
+        },
+      },
+    };
+    // config 
+    const config = {
+      type: 'bar',
+      data:data,
+      options:options,
+      plugins: [customTitle]
+    };
 
-percentagePerMonth(slider.value);
+    // render init block
+    const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+    );
+
+    percentagePerMonth(slider.value);
 
