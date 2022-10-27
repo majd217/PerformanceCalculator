@@ -94,16 +94,16 @@ document.getElementById(selectedButton).style.opacity="1.0";
         }
         finalVal = growthPercentage * amountPerYear * compoundInterest ;
         amountsaved = amountPerYear * (i+1);
-        myChart.config.data.datasets[0].data.push(amountsaved);
-        myChart.config.data.datasets[1].data.push(finalVal - amountsaved);
-        myChart.config.data.datasets[2].data.push(finalVal);
+        myChart.config.data.datasets[0].data.push(Math.round(amountsaved * 100) / 100);
+        myChart.config.data.datasets[1].data.push(Math.round((finalVal - amountsaved) * 100) / 100);
+        myChart.config.data.datasets[2].data.push(Math.round(finalVal * 100) / 100);
 
       }
       console.log(finalVal);
       totalAmount.innerHTML = new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(Math.round(finalVal * 100) / 100);
-      eingezahltVal.innerHTML = new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR",maximumFractionDigits:0}).format(amountsaved) ;
-      gesamtVal.innerHTML =  new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR",maximumFractionDigits:0}).format(finalVal);
-      renditeVal.innerHTML =  new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR",maximumFractionDigits:0}).format((finalVal - amountsaved));
+      eingezahltVal.innerHTML = new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(Math.round(amountsaved * 100) / 100);
+      gesamtVal.innerHTML =  new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(Math.round(finalVal * 100) / 100);
+      renditeVal.innerHTML =  new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(Math.round((finalVal - amountsaved) * 100) / 100);
       
       myChart.update();
     }
@@ -121,19 +121,22 @@ const data = {
   datasets: [
     {
       data: [],
+      backgroundColor: '#48348A',
+      fillColor: '#48348A',
+        ...commonStyles,
+    },
+    {
+      data: [],
+      backgroundColor: 'white',
+      fillColor :'white',
+      borderColor: 'white',
         ...commonStyles,
     },
     {
       data: [],
       backgroundColor: '#B7CB75',
-      fillColor :'#B7CB75',
       borderColor: '#B7CB75',
-        ...commonStyles,
-    },
-    {
-      data: [],
-      backgroundColor: '#B7CB75',
-      borderColor: '#B7CB75',
+      fillColor:'#B7CB75',
         ...commonStyles,
     }
 ]

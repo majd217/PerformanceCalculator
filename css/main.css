@@ -64,8 +64,12 @@
 }
 
 #gesamtline{
-    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    opacity: 1;
+    width: 330px;    
     color: black !important;
+    height: 1px !important;
 }
 .amount {
  display: inline-block;
@@ -182,15 +186,17 @@
     cursor: pointer;
 }
 
-  .chartValues{
+  .chartValues:not(#gesamtline){
     font-family: 'Lexend Deca';
     font-style: normal;
-    width: 200;
     display: flex;
+    text-shadow: 0.5px 0.5px black;
+    font-weight:1000 !important;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    line-height: 1.5;
+    width: 100%;
+   
 
   }
 
